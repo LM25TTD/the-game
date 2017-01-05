@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-	public const string KEY_LEFT = "left";
-	public const string KEY_RIGHT = "right";
-	public const string BUTTON_JUMP = "Jump";
-
 	public float Speed = 6.0f;
 	public float JumpSpeed = 8.0f;
 	public float Gravity = 100.0f;
@@ -15,6 +11,7 @@ public class Controller : MonoBehaviour
 	public bool ShallMove = false;
 	public bool IsGrounded = false;
 	public bool IsFreeFloating = false;
+	public bool IsFalling = false;
 
 	private Vector3 mMoveDirection = Vector3.zero;
 	private CharacterController mController = null;
@@ -30,6 +27,7 @@ public class Controller : MonoBehaviour
 	{
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
 		IsGrounded = mController.collisionFlags == CollisionFlags.Below;
+		IsFalling = mController.velocity.y < -1;
 
 		if (mController != null && ShallMove) {
 			if (IsGrounded) {
@@ -38,11 +36,13 @@ public class Controller : MonoBehaviour
 				mMoveDirection = transform.TransformDirection (mMoveDirection);
 				mMoveDirection *= Speed;
 
-				int rotateDirection = Input.GetKey (KEY_RIGHT) ? 1 : Input.GetKey (KEY_LEFT) ? -1 : 0;
+				int rotateDirection = Input.GetKey (ControllerConstants.KEY_RIGHT) 
+					? 1 
+					: Input.GetKey (ControllerConstants.KEY_LEFT) ? -1 : 0;
 				float rotateFactor = RotateSpeed * Time.deltaTime * rotateDirection;
 				transform.Rotate (0, rotateFactor, 0);
 
-				if (Input.GetButton (BUTTON_JUMP)) {
+				if (Input.GetButton (ControllerConstants.BUTTON_JUMP)) {
 					mMoveDirection.y = JumpSpeed;
 				}
 			}
