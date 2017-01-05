@@ -26,7 +26,7 @@ public class Controller : MonoBehaviour
 	void Update ()
 	{
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
-		IsGrounded = mController.collisionFlags == CollisionFlags.Below;
+		IsGrounded = (mController.collisionFlags & CollisionFlags.Below) != 0;
 		IsFalling = mController.velocity.y < -1;
 
 		if (mController != null && ShallMove) {
@@ -46,6 +46,7 @@ public class Controller : MonoBehaviour
 					mMoveDirection.y = JumpSpeed;
 				}
 			}
+
 			mMoveDirection.y -= Gravity * Time.deltaTime;
 			mController.Move (mMoveDirection * Time.deltaTime);
 		}

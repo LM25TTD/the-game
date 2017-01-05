@@ -18,12 +18,6 @@ public class AnimationController : MonoBehaviour
 	{
 		anim = GetComponent<Animator> ();
 		mPlayerController = GetComponentInParent<Controller> ();
-
-		/*anim [AnimationConstants.ANIM_RUN].speed = RunAnimationSpeed;
-		anim [AnimationConstants.ANIM_STAND_A].speed = StandAnimationSpeed;
-		anim [AnimationConstants.ANIM_RUN_JUMP_UP].speed = JumpAnimationSpeed;
-		anim [AnimationConstants.ANIM_RUN_JUMP_UP].wrapMode = WrapMode.Once;
-		anim [AnimationConstants.ANIM_JUMP_LOOP].wrapMode = WrapMode.Loop;*/
 	}
 
 	// Update is called once per frame
@@ -31,22 +25,22 @@ public class AnimationController : MonoBehaviour
 	{
 		if (mPlayerController.ShallMove) {
 			if (mPlayerController.IsGrounded) {
-				if (anim.GetInteger ("State") == 0) {
-					anim.SetInteger ("State", 1);
+				if (anim.GetInteger (AnimationConstants.ANIM_CONTROL) == 0) {
+					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 1);
 				} else {
-					anim.SetInteger ("State", 4);
+					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 4);
 				}
 			} else if (mPlayerController.IsFalling) {
-				if (anim.GetInteger ("State") == 2) {
-					anim.SetInteger ("State", 3);
+				if (anim.GetInteger (AnimationConstants.ANIM_CONTROL) == 2) {
+					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 3);
 				} else {
-					anim.SetInteger ("State", 5);
+					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 5);
 				}
 			} else if (Input.GetButton (ControllerConstants.BUTTON_JUMP)) {
-				anim.SetInteger ("State", 2);
+				anim.SetInteger (AnimationConstants.ANIM_CONTROL, 2);
 			}
 		} else {
-			anim.SetInteger ("State", 0);
+			anim.SetInteger (AnimationConstants.ANIM_CONTROL, 0);
 		}
 	}
 }
