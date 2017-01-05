@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
 	public float Gravity = 100.0f;
 	public float RotateSpeed = 60.0f;
 	public bool ShallMove = false;
+	public bool IsGrounded = false;
+	public bool IsFreeFloating = false;
 
 	private Vector3 mMoveDirection = Vector3.zero;
 	private CharacterController mController = null;
@@ -26,10 +28,11 @@ public class Controller : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
+		IsGrounded = mController.collisionFlags == CollisionFlags.Below;
+
 		if (mController != null && ShallMove) {
-			//Workaround to avoid isGrounded always false
-			mController.Move (mMoveDirection * Time.deltaTime);
-			if (mController.isGrounded) {
+			if (IsGrounded) {
 				float zDirection = Speed * Time.deltaTime;
 				mMoveDirection = new Vector3 (0, 0, zDirection);
 				mMoveDirection = transform.TransformDirection (mMoveDirection);
