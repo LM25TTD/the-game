@@ -13,17 +13,17 @@ public class Controller : MonoBehaviour
 	public bool IsFreeFloating = false;
 	public bool IsFalling = false;
 
-	private Vector3 mMoveDirection = Vector3.zero;
-	private CharacterController mController = null;
+	protected Vector3 mMoveDirection = Vector3.zero;
+	protected CharacterController mController = null;
 
 	// Use this for initialization
-	void Start ()
+	public void Start ()
 	{
 		mController = GetComponent<CharacterController> ();
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public virtual void Update ()
 	{
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
 		IsGrounded = (mController.collisionFlags & CollisionFlags.Below) != 0;
@@ -49,6 +49,8 @@ public class Controller : MonoBehaviour
 
 			mMoveDirection.y -= Gravity * Time.deltaTime;
 			mController.Move (mMoveDirection * Time.deltaTime);
+
+			PlayerInfoManager.Instance.IncreaseScore (2.0f);
 		}
 	}
 }
