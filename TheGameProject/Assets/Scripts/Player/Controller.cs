@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	public virtual void Update ()
+	public virtual void FixedUpdate ()
 	{
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
 		IsGrounded = (mController.collisionFlags & CollisionFlags.Below) != 0;
@@ -47,6 +47,7 @@ public class Controller : MonoBehaviour
 				}
 			}
 
+			//Apply gravity
 			mMoveDirection.y -= Gravity * Time.deltaTime;
 			mController.Move (mMoveDirection * Time.deltaTime);
 

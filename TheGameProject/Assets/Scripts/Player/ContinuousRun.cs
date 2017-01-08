@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContinuousRun : Controller {
 
 	// Update is called once per frame
-	public override void Update () {
+	public override void FixedUpdate () {
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
 		IsGrounded = (mController.collisionFlags & CollisionFlags.Below) != 0;
 		IsFalling = mController.velocity.y < -1;
