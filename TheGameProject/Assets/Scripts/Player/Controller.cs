@@ -36,13 +36,13 @@ public class Controller : MonoBehaviour
 				mMoveDirection = transform.TransformDirection (mMoveDirection);
 				mMoveDirection *= Speed;
 
-				int rotateDirection = Input.GetKey (ControllerConstants.KEY_RIGHT) 
+				int rotateDirection = Input.GetKey (Constants.CONTROLLER_KEY_RIGHT) 
 					? 1 
-					: Input.GetKey (ControllerConstants.KEY_LEFT) ? -1 : 0;
+					: Input.GetKey (Constants.CONTROLLER_KEY_LEFT) ? -1 : 0;
 				float rotateFactor = RotateSpeed * Time.deltaTime * rotateDirection;
 				transform.Rotate (0, rotateFactor, 0);
 
-				if (Input.GetButton (ControllerConstants.BUTTON_JUMP)) {
+				if (Input.GetButton (Constants.CONTROLLER_BUTTON_JUMP)) {
 					mMoveDirection.y = JumpSpeed;
 				}
 			}
@@ -52,6 +52,14 @@ public class Controller : MonoBehaviour
 			mController.Move (mMoveDirection * Time.deltaTime);
 
 			PlayerInfoManager.Instance.IncreaseScore (2.0f);
+		}
+	}
+
+
+	void Update()
+	{
+		if (PlayerInfoManager.Instance.GetHealth() == 0.0f) {
+			ShallMove = false;
 		}
 	}
 }

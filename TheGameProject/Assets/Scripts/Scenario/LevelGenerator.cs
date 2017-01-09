@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
 
-	public GameObject ScenarioDefault = null;
+	public Transform ScenarioDefault = null;
 	public GameObject PreviousObject = null;
 
 	// Use this for initialization
@@ -21,8 +21,8 @@ public class LevelGenerator : MonoBehaviour {
 	{
 		Vector3 newPosition = transform.position;
 		newPosition.z += 200;
-		if (collider.CompareTag ("Player")) {
-			GameObject newPath = Instantiate (ScenarioDefault, newPosition, transform.rotation);
+		if (collider.CompareTag (Constants.TAG_PLAYER)) {
+			Transform newPath = Instantiate (ScenarioDefault, newPosition, transform.rotation);
 			LevelGenerator newPathLevelGenerator = newPath.GetComponent<LevelGenerator> ();
 			if (newPathLevelGenerator != null) {
 				newPathLevelGenerator.PreviousObject = gameObject;

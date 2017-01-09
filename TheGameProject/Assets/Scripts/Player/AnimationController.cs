@@ -25,22 +25,26 @@ public class AnimationController : MonoBehaviour
 	{
 		if (mPlayerController.ShallMove) {
 			if (mPlayerController.IsGrounded) {
-				if (anim.GetInteger (AnimationConstants.ANIM_CONTROL) == 0) {
-					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 1);
+				if (anim.GetInteger (Constants.ANIM_CONTROL) == 0) {
+					anim.SetInteger (Constants.ANIM_CONTROL, 1);
 				} else {
-					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 4);
+					anim.SetInteger (Constants.ANIM_CONTROL, 4);
 				}
 			} else if (mPlayerController.IsFalling) {
-				if (anim.GetInteger (AnimationConstants.ANIM_CONTROL) == 2) {
-					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 3);
+				if (anim.GetInteger (Constants.ANIM_CONTROL) == 2) {
+					anim.SetInteger (Constants.ANIM_CONTROL, 3);
 				} else {
-					anim.SetInteger (AnimationConstants.ANIM_CONTROL, 5);
+					anim.SetInteger (Constants.ANIM_CONTROL, 5);
 				}
-			} else if (Input.GetButton (ControllerConstants.BUTTON_JUMP)) {
-				anim.SetInteger (AnimationConstants.ANIM_CONTROL, 2);
+			} else if (Input.GetButton (Constants.CONTROLLER_BUTTON_JUMP)) {
+				anim.SetInteger (Constants.ANIM_CONTROL, 2);
 			}
 		} else {
-			anim.SetInteger (AnimationConstants.ANIM_CONTROL, 0);
+			anim.SetInteger (Constants.ANIM_CONTROL, 0);
+		}
+
+		if (PlayerInfoManager.Instance.GetHealth () == 0.0f) {
+			anim.SetInteger (Constants.ANIM_CONTROL, 10);
 		}
 	}
 }

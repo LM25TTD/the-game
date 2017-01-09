@@ -83,6 +83,11 @@ public class PlayerInfoManager : MonoBehaviour {
 		UpdateHealthText();
 	}
 
+	public float GetHealth()
+	{
+		return mHealth;
+	}
+
 	private void UpdateHealthText()
 	{
 		HealthText.text = mHealth.ToString();

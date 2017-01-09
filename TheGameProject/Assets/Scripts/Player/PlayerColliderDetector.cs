@@ -16,7 +16,7 @@ public class PlayerColliderDetector : MonoBehaviour {
 
 	public void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		if(hit.gameObject.CompareTag("DangerousObstacle"))
+		if(hit.gameObject.CompareTag(Constants.TAG_DANGEROUS_OBSTACLE))
 		{
 			PlayerInfoManager.Instance.DecreaseHealth(1.0f);
 		}
