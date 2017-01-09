@@ -15,11 +15,13 @@ public class Controller : MonoBehaviour
 
 	protected Vector3 mMoveDirection = Vector3.zero;
 	protected CharacterController mController = null;
+	protected ButtonDetector mInputDetector = null;
 
 	// Use this for initialization
 	public void Start ()
 	{
 		mController = GetComponent<CharacterController> ();
+		mInputDetector = GetComponent<ButtonDetector> ();
 	}
 	
 	// Update is called once per frame
@@ -36,13 +38,14 @@ public class Controller : MonoBehaviour
 				mMoveDirection = transform.TransformDirection (mMoveDirection);
 				mMoveDirection *= Speed;
 
-				int rotateDirection = Input.GetKey (Constants.CONTROLLER_KEY_RIGHT) 
-					? 1 
-					: Input.GetKey (Constants.CONTROLLER_KEY_LEFT) ? -1 : 0;
+				InputDirection? inputDirection = mInputDetector.DetectInputDirection ();
+
+				int rotateDirection = inputDirection == InputDirection.Right ? 1 
+					: inputDirection == InputDirection.Left  ? -1 : 0;
 				float rotateFactor = RotateSpeed * Time.deltaTime * rotateDirection;
 				transform.Rotate (0, rotateFactor, 0);
 
-				if (Input.GetButton (Constants.CONTROLLER_BUTTON_JUMP)) {
+				if (inputDirection == InputDirection.Top) {
 					mMoveDirection.y = JumpSpeed;
 				}
 			}
