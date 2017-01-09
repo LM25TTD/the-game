@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is the main script that handles the player controller.
+/// It applies movements, gravity, jumping and updates the score.
+/// </summary>
 public class Controller : MonoBehaviour
 {
 	public float Speed = 6.0f;
@@ -24,7 +28,8 @@ public class Controller : MonoBehaviour
 		mInputDetector = GetComponent<ButtonDetector> ();
 	}
 	
-	// Update is called once per frame
+	// Using the FixedUpdate to have a more consistent movement
+	// due to fixed delta time between calls.
 	public virtual void FixedUpdate ()
 	{
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
@@ -58,7 +63,7 @@ public class Controller : MonoBehaviour
 		}
 	}
 
-
+	//Using update just to check the die state
 	void Update()
 	{
 		if (PlayerInfoManager.Instance.GetHealth() == 0.0f) {

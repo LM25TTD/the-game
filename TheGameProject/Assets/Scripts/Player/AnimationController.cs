@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class controls the animations of the Player object.
+/// The player must be an Animator attached listening a change
+/// of an int with the name State.
+/// </summary>
 public class AnimationController : MonoBehaviour
 {
     
@@ -20,7 +25,11 @@ public class AnimationController : MonoBehaviour
 		mPlayerController = GetComponentInParent<Controller> ();
 	}
 
-	// Update is called once per frame
+	/// <summary>
+	/// Update is called once per frame
+	/// Check each frame checking the player controller
+	/// states, like running, falling, jumping and die
+	/// </summary>
 	void Update ()
 	{
 		if (mPlayerController.ShallMove) {

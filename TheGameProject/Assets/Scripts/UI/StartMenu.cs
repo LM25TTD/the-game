@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles the StartMenu, loading the main scene or quiting the application.
+/// </summary>
 public class StartMenu : MonoBehaviour {
 
 	// Use this for initialization
@@ -16,7 +19,7 @@ public class StartMenu : MonoBehaviour {
 	}
 
 	public void OnPlayPressed(){
-		SceneManager.LoadScene ("BaseScene");
+		SceneManager.LoadScene (Constants.SCENE_BASE_NAME);
 	}
 
 	public void OnExitPressed(){

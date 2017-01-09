@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class is an override of default controller,
+/// just keep the player running.
+/// </summary>
 public class ContinuousRun : Controller {
 
-	// Update is called once per frame
+	// Just run in infinite scenario.
 	public override void FixedUpdate () {
 		IsFreeFloating = mController.collisionFlags == CollisionFlags.None;
 		IsGrounded = (mController.collisionFlags & CollisionFlags.Below) != 0;

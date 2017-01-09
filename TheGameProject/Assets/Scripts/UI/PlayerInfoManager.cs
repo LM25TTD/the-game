@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// Player info manager. Singleton object the holds the Player informations like health and 
+/// score. This class populate the UI.
+/// </summary>
 public class PlayerInfoManager : MonoBehaviour {
 
 	private float mScore = 0.0f, mHealth=100.0f;
@@ -45,30 +48,47 @@ public class PlayerInfoManager : MonoBehaviour {
 		UpdateHealthText ();
 	}	
 
+	/// <summary>
+	/// Resets the score.
+	/// </summary>
 	public void ResetScore()
 	{
 		mScore = 0;
 		UpdateScoreText();
 	}
 
+	/// <summary>
+	/// Sets the score.
+	/// </summary>
+	/// <param name="value">Value.</param>
 	public void SetScore(float value)
 	{
 		mScore = value;
 		UpdateScoreText();
 	}
 
+	/// <summary>
+	/// Increases the score.
+	/// </summary>
+	/// <param name="value">Value.</param>
 	public void IncreaseScore(float value)
 	{
 		mScore += value;
 		UpdateScoreText();
 	}
 
+	/// <summary>
+	/// Updates the score text.
+	/// </summary>
 	private void UpdateScoreText()
 	{
 		ScoreText.text = mScore.ToString();
 	}
 
-
+	/// <summary>
+	/// Increases the health.
+	/// </summary>
+	/// <param name="value">Value.</param>
 	public void IncreaseHealth(float value)
 	{
 		mHealth += value;
@@ -76,6 +96,10 @@ public class PlayerInfoManager : MonoBehaviour {
 		UpdateHealthText();
 	}
 
+	/// <summary>
+	/// Decreases the health.
+	/// </summary>
+	/// <param name="value">Value.</param>
 	public void DecreaseHealth(float value)
 	{
 		mHealth -= value;
@@ -83,11 +107,18 @@ public class PlayerInfoManager : MonoBehaviour {
 		UpdateHealthText();
 	}
 
+	/// <summary>
+	/// Gets the health.
+	/// </summary>
+	/// <returns>The health.</returns>
 	public float GetHealth()
 	{
 		return mHealth;
 	}
 
+	/// <summary>
+	/// Updates the health text.
+	/// </summary>
 	private void UpdateHealthText()
 	{
 		HealthText.text = mHealth.ToString();

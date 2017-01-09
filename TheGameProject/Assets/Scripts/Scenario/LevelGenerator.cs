@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Level generator. Generates a new piece of the scenario to keep the illusion
+/// of infinite path.
+/// </summary>
 public class LevelGenerator : MonoBehaviour {
 
 	public GameObject ScenarioDefault = null;
@@ -17,6 +21,11 @@ public class LevelGenerator : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// Raises the trigger enter event. This trigger will instantiate a new scenario
+	/// on each collision.
+	/// </summary>
+	/// <param name="collider">Collider.</param>
 	public void OnTriggerEnter(Collider collider)
 	{
 		Vector3 newPosition = transform.position;

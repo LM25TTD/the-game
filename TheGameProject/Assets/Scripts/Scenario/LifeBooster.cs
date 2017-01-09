@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Life booster handler. This class implements the behavior of the LifeBooster 
+/// game object.
+/// </summary>
 public class LifeBooster : MonoBehaviour {
 
 	// Use this for initialization
@@ -14,6 +18,11 @@ public class LifeBooster : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// Raises the trigger enter event. Always when the Player collides with 
+	/// the LifeBooster, the health shall be increased by 2 points.
+	/// </summary>
+	/// <param name="collider">Collider.</param>
 	public void OnTriggerEnter(Collider collider)
 	{
 		if(collider.CompareTag(Constants.TAG_PLAYER)){

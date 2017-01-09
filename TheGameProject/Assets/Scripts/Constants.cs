@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Holds all constants of the project.
+/// </summary>
 public class Constants {
 
 	public const string ANIM_CONTROL = "State";
@@ -17,4 +21,7 @@ public class Constants {
 
 	public const string TAG_PLAYER = "Player";
 	public const string TAG_DANGEROUS_OBSTACLE = "DangerousObstacle";
+
+
+	public const string SCENE_BASE_NAME = "BaseScene";
 }
